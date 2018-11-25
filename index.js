@@ -59,6 +59,20 @@ fs.readdir("./commands/diversão", (err, files) => {
 	});
 })
 
+bot.on('ready', () => {
+    bot.user.setActivity(`${config.prefix}help | ${bot.users.size} users!`, {type: 'STREAMING', url: 'https://www.twitch.tv/directory/following'});
+    bot.user.setStatus('idle');
+    console.log(`Online!\nServidores: ${bot.guilds.size}\nUsuários: ${bot.users.size}\nCanais: ${bot.channels.size}\nEmojis: ${bot.emojis.size}\n${bot.user.username} online com sucesso!`);
+});
+
+bot.on('guildCreate', (guild) => {
+    bot.user.setActivity(`${config.prefix}help | ${bot.users.size} users!`, {type: 'STREAMING', url: 'https://www.twitch.tv/directory/following'});
+});
+
+bot.on('guildDelete', (guild) => {
+    bot.user.setActivity(`${config.prefix}help | ${bot.users.size} users!`, {type: 'STREAMING', url: 'https://www.twitch.tv/directory/following'});
+});
+
 bot.on('message', async message => {
 
     if(message.author.bot) return;
